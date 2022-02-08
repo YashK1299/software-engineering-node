@@ -17,8 +17,8 @@ export default class TuitController implements TuitControllerI {
            // RESTful User Web service API
            app.get("/tuits", TuitController.tuitController.findAllTuits);
            app.get("/tuits/:tuitid", TuitController.tuitController.findTuitById);
-           app.get("/tuits/:uid/tuits", TuitController.tuitController.findTuitsByUser);
-           app.post("/tuits", TuitController.tuitController.createTuit);
+           app.get("/users/:uid/tuits", TuitController.tuitController.findTuitsByUser);
+           app.post("/users/:uid/tuits", TuitController.tuitController.createTuit);
            app.put("/tuits/:tuitid", TuitController.tuitController.updateTuit);
            app.delete("/tuits/:tuitid", TuitController.tuitController.deleteTuit);
        }
@@ -37,7 +37,7 @@ export default class TuitController implements TuitControllerI {
         TuitController.tuitDao.findTuitById(req.params.uid)
             .then((tuit: Tuit | null) => res.json(tuit));
     createTuit = (req: Request, res: Response) =>
-        TuitController.tuitDao.createTuit(req.body)
+        TuitController.tuitDao.createTuit(req.params.uid, req.body)
             .then((tuit: Tuit) => res.json(tuit));
     updateTuit = (req: Request, res: Response) =>
         TuitController.tuitDao.updateTuit(req.params.uid, req.body)

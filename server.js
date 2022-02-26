@@ -1,5 +1,5 @@
 /**
- * @file Represents the server file
+ * @file Represents the server file to connect the middleware
  */
 const express = require('express');
 const app = express();

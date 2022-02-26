@@ -10,6 +10,7 @@ import FollowController from './controllers/FollowController';
 import BookmarkController from './controllers/BookmarkController';
 import mongoose from 'mongoose';
 
+// To read the config file
 const dotenv = require('dotenv');
 dotenv.config();
 

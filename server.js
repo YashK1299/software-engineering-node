@@ -1,3 +1,6 @@
+/**
+ * @file Represents the server file
+ */
 const express = require('express');
 const app = express();
 

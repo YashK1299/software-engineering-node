@@ -1,3 +1,6 @@
+/**
+ * @file Represents the server file with all the api instances, and database connection
+ */
 import express, {Request, Response} from 'express';
 import UserController from './controllers/UserController';
 import TuitController from './controllers/TuitController';
@@ -25,6 +28,7 @@ app.get('/hello', (req: Request, res: Response) =>
 app.get('/add/:a/:b', (req: Request, res: Response) =>
     res.send(req.params.a + req.params.b));
 
+// Setting up the instance for each RESTfull API
 const userController = UserController.getInstance(app);
 const tuitController = TuitController.getInstance(app);
 const likeController = LikeController.getInstance(app);

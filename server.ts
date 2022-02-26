@@ -1,6 +1,10 @@
 import express, {Request, Response} from 'express';
 import UserController from './controllers/UserController';
 import TuitController from './controllers/TuitController';
+import LikeController from './controllers/LikeController';
+import MessageController from './controllers/MessageController';
+import FollowController from './controllers/FollowController';
+import BookmarkController from './controllers/BookmarkController';
 import mongoose from 'mongoose';
 
 const dotenv = require('dotenv');
@@ -23,5 +27,9 @@ app.get('/add/:a/:b', (req: Request, res: Response) =>
 
 const userController = UserController.getInstance(app);
 const tuitController = TuitController.getInstance(app);
+const likeController = LikeController.getInstance(app);
+const followController = FollowController.getInstance(app);
+const messageController = MessageController.getInstance(app);
+const bookmarkController = BookmarkController.getInstance(app);
 
 app.listen(process.env.PORT);

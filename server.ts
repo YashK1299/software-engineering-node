@@ -1,8 +1,16 @@
+/**
+ * @file Represents the server file with all the api instances, and database connection
+ */
 import express, {Request, Response} from 'express';
 import UserController from './controllers/UserController';
 import TuitController from './controllers/TuitController';
+import LikeController from './controllers/LikeController';
+import MessageController from './controllers/MessageController';
+import FollowController from './controllers/FollowController';
+import BookmarkController from './controllers/BookmarkController';
 import mongoose from 'mongoose';
 
+// To read the config file
 const dotenv = require('dotenv');
 dotenv.config();
 
@@ -21,7 +29,12 @@ app.get('/hello', (req: Request, res: Response) =>
 app.get('/add/:a/:b', (req: Request, res: Response) =>
     res.send(req.params.a + req.params.b));
 
+// Setting up the instance for each RESTfull API
 const userController = UserController.getInstance(app);
 const tuitController = TuitController.getInstance(app);
+const likeController = LikeController.getInstance(app);
+const followController = FollowController.getInstance(app);
+const messageController = MessageController.getInstance(app);
+const bookmarkController = BookmarkController.getInstance(app);
 
 app.listen(process.env.PORT);

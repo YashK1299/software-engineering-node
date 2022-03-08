@@ -1,5 +1,14 @@
 /**
- * @file Represents the server file with all the api instances, and database connection
+ * @file Implements an Express Node HTTP server. Declares RESTful Web services
+ * enabling CRUD operations on the following resources:
+ * <ul>
+ *     <li>users</li>
+ *     <li>tuits</li>
+ *     <li>likes</li>
+ * </ul>
+ * 
+ * Connects to a remote MongoDB instance hosted on the Atlas cloud database
+ * service
  */
 import express, {Request, Response} from 'express';
 import UserController from './controllers/UserController';
@@ -9,6 +18,7 @@ import MessageController from './controllers/MessageController';
 import FollowController from './controllers/FollowController';
 import BookmarkController from './controllers/BookmarkController';
 import mongoose from 'mongoose';
+const cors = require("cors");
 
 // To read the config file
 const dotenv = require('dotenv');
@@ -22,9 +32,10 @@ mongoose.connect(connectionString)
 
 const app = express();
 app.use(express.json());
+app.use(cors());
 
-app.get('/hello', (req: Request, res: Response) =>
-    res.send('Hello World!'));
+app.get('/', (req: Request, res: Response) =>
+    res.send('Welcome'));
 
 app.get('/add/:a/:b', (req: Request, res: Response) =>
     res.send(req.params.a + req.params.b));
@@ -37,4 +48,8 @@ const followController = FollowController.getInstance(app);
 const messageController = MessageController.getInstance(app);
 const bookmarkController = BookmarkController.getInstance(app);
 
+/**
+ * Start a server listening at port 4000 locally
+ * but use environment variable PORT on Heroku if available.
+ */
 app.listen(process.env.PORT);

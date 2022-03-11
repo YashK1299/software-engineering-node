@@ -37,4 +37,7 @@ const followController = FollowController.getInstance(app);
 const messageController = MessageController.getInstance(app);
 const bookmarkController = BookmarkController.getInstance(app);
 
+/**
+ * @file Represents the server file to connect the middleware
+ */
 app.listen(process.env.PORT);

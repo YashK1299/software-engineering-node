@@ -132,10 +132,24 @@
          UserController.userDao.deleteAllUsers()
              .then((status) => res.send(status));
  
+     /**
+      * Removes a user instance from the database
+      * @param {Request} req Represents request from client, including path
+      * parameter uid identifying the primary key of the user to be removed
+      * @param {Response} res Represents response to client, including status
+      * on whether deleting a user was successful or not
+      */
      deleteUsersByUsername = (req: Request, res: Response) =>
        UserController.userDao.deleteUsersByUsername(req.params.username)
          .then(status => res.send(status));
  
+     
+     /**
+      * Helps the user to login to access the tuits of other users it follows
+      * @param {Request} req Represents request from client 
+      * @param {Response} res Represents response to client, including status
+      * on whether login was successful or not
+      */
      login = (req: Request, res: Response) =>
          UserController.userDao
              .findUserByCredentials(req.body.username, req.body.password)
@@ -143,6 +157,13 @@
                  res.json(user)
              });
      
+     /**
+      * Helps the user to register to the tuiter web application to access 
+      * the tuits of other users it will follow
+      * @param {Request} req Represents request from client 
+      * @param {Response} res Represents response to client, including status
+      * on whether registering the user was successful or not
+      */
      register = (req: Request, res: Response) =>
          UserController.userDao.findUserByUsername(req.body.username)
              .then(user => {

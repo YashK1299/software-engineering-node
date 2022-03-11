@@ -1,6 +1,8 @@
 import {Request, Response} from "express";
-import Tuit from "../models/Tuit";
 
+/**
+ * @file Declares API for Tuits related controller methods
+ */
 export default interface TuitControllerI {
     findAllTuits (req: Request, res: Response): void;
     findAllTuitsByUser (req: Request, res: Response): void;

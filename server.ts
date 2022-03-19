@@ -34,7 +34,8 @@ const app = express();
 app.use(express.json());
 app.use(cors({
     credentials: true,
-    origin: 'http://localhost:3000'
+    origin: 'https://6236551fb14fd20b0df6c5f1--epic-goldberg-90b64d.netlify.app/'
+    // origin: 'http://localhost:3000'
 }));
 
 app.get('/', (req: Request, res: Response) =>

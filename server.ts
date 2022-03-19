@@ -32,10 +32,7 @@ mongoose.connect(connectionString)
 
 const app = express();
 app.use(express.json());
-app.use(cors({
-    credentials: true,
-    origin: 'http://localhost:3000'
-}));
+app.use(cors());
 
 app.get('/', (req: Request, res: Response) =>
     res.send('Welcome'));

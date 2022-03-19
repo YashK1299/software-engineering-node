@@ -10,6 +10,7 @@
  * Connects to a remote MongoDB instance hosted on the Atlas cloud database
  * service
  */
+import dotenv from 'dotenv';
 import express, {Request, Response} from 'express';
 import UserController from './controllers/UserController';
 import TuitController from './controllers/TuitController';
@@ -21,7 +22,6 @@ import mongoose from 'mongoose';
 const cors = require("cors");
 
 // To read the config file
-const dotenv = require('dotenv');
 dotenv.config();
 
 // Connnect to DB
@@ -32,7 +32,10 @@ mongoose.connect(connectionString)
 
 const app = express();
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+    credentials: true,
+    origin: 'http://localhost:3000'
+}));
 
 app.get('/', (req: Request, res: Response) =>
     res.send('Welcome'));

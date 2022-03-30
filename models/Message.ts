@@ -1,11 +1,11 @@
 /**
  * @file Declares Follow data type representing relationship between
- * two users, as in user follows another user
+ * two users, as in user messages another user
  */
  import User from "./User";
  
  /**
-  * @typedef Follow Represents follows relationship between two users,
+  * @typedef Message Represents follows relationship between two users,
   * as in a user follows another user
   * @property {string} message The text message the user wants to send to another user
   * @property {User} to User being followed by the user

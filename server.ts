@@ -23,6 +23,22 @@ mongoose.connect(connectionString)
 const app = express();
 app.use(express.json());
 
+// Securing user session
+const session = require("express-session");
+let sess = {
+    secret: process.env.EXPRESS_SESSION_SECRET,
+    saveUninitialized: true,
+    resave: true,
+    cookie: {
+        sameSite: process.env.NODE_ENV === "production" ? 'none' : 'lax',
+        secure: process.env.NODE_ENV === "production",
+    }
+}
+if (process.env.NODE_ENV === 'production') {
+    app.set('trust proxy', 1) // trust first proxy
+    sess.cookie.secure = true // serve secure cookies
+}
+
 app.get('/hello', (req: Request, res: Response) =>
     res.send('Hello World!'));
 

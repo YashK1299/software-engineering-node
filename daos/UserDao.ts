@@ -82,6 +82,9 @@
       */
      deleteAllUsers = async (): Promise<any> =>
          UserModel.deleteMany({});
+ 
+     deleteUsersByUsername = async (username: string): Promise<any> =>
+       UserModel.deleteMany({username});
      
      /**
       * Uses UserModel to retrieve single user document from users collection

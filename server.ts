@@ -52,8 +52,11 @@ if (process.env.NODE_ENV === 'production') {
     sess.cookie.secure = true // serve secure cookies
 }
 
+app.use(cors({
+     credentials: true,
+     origin: 'http://localhost:3000'
+    }));
 app.use(session(sess));
-app.use(cors());
 app.use(express.json());
 
 app.get('/hello', (req: Request, res: Response) =>

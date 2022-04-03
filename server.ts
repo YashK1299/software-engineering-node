@@ -5,6 +5,9 @@
  *     <li>users</li>
  *     <li>tuits</li>
  *     <li>likes</li>
+ *     <li>bookmarks</li>
+ *     <li>messages</li>
+ *     <li>follows</li>
  * </ul>
  * 
  * Connects to a remote MongoDB instance hosted on the Atlas cloud database
@@ -19,6 +22,7 @@ import MessageController from './controllers/MessageController';
 import FollowController from './controllers/FollowController';
 import BookmarkController from './controllers/BookmarkController';
 import mongoose from 'mongoose';
+import AuthenticationController from './controllers/AuthenticationController';
 const cors = require("cors");
 
 // To read the config file
@@ -31,8 +35,6 @@ const connectionString = `mongodb+srv://${DB_USERNAME}:${DB_PASSWORD}@cluster0.e
 mongoose.connect(connectionString)
 
 const app = express();
-app.use(express.json());
-app.use(cors());
 
 // Securing user session
 const session = require("express-session");
@@ -50,9 +52,13 @@ if (process.env.NODE_ENV === 'production') {
     sess.cookie.secure = true // serve secure cookies
 }
 
+app.use(session(sess));
+app.use(cors());
+app.use(express.json());
+
 app.get('/hello', (req: Request, res: Response) =>
     res.send('Hello World!'));
-    
+
 app.get('/', (req: Request, res: Response) =>
     res.send('Welcome'));
 
@@ -66,6 +72,7 @@ const likeController = LikeController.getInstance(app);
 const followController = FollowController.getInstance(app);
 const messageController = MessageController.getInstance(app);
 const bookmarkController = BookmarkController.getInstance(app);
+AuthenticationController(app);
 
 /**
  * Start a server listening at port 4000 locally

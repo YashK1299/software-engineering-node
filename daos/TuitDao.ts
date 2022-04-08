@@ -36,7 +36,10 @@
       * database
       */ 
      findAllTuitsByUser = async (uid: string): Promise<Tuit[]> =>
-         TuitModel.find({postedBy: uid});
+         TuitModel.find({postedBy: uid})
+            .sort({'postedOn': -1})
+            .populate("postedBy")
+            .exec();
 
      /**
       * Uses TuitModel to retrieve a aingle tuit document from tuits collection

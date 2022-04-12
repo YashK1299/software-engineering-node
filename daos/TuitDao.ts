@@ -77,6 +77,12 @@
              {_id: tid},
              {$set: {stats: newStats}});
 
+    updateDislikes = async (tid: string, newStats:any) =>
+        TuitModel.updateOne(
+            {_id: tid},
+            {$set: {stats: newStats}});
+         
+
      /**
       * Removes tuit from the database.
       * @param {string} tid Primary key of tuit to be removed

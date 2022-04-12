@@ -72,4 +72,3 @@
      userUndislikesTuit = async (uid: string, tid: string): Promise<any> =>
          DislikeModel.deleteOne({tuit: tid, dislikedBy: uid});
  }
- 

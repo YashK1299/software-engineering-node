@@ -82,7 +82,6 @@
             {_id: tid},
             {$set: {stats: newStats}});
          
-
      /**
       * Removes tuit from the database.
       * @param {string} tid Primary key of tuit to be removed
